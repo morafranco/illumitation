@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <H2>Calcular iluminacion</H2>
+            <hr class="red">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <label for="fileSign">Archivo de matrix:</label><br>
+            <input type="file" id="file" accept=".txt"  class="upload-input"  (change)="selectFile($event.target)" />
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let r of matrix;let i =index">
+                        <td class="border" *ngFor="let i of matrix[i]" [ngClass]="{'bg-dark': i === '1' ,'bg-success': i === '2' ,'bg-light': i === '3'  }">&nbsp;</td>
+                      </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

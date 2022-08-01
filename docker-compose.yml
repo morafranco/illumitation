@@ -1,0 +1,35 @@
+version: '3'
+networks:
+  common:
+    external:
+      name: common_network
+services:
+  front:
+    container_name: illimination_front
+    build:
+      context: front/
+    environment:
+      - TZ=America/Mexico_City
+    ports:
+      - 8107:80
+      - 8207:4200
+    volumes:
+      - ./front:/usr/share/nginx/html
+      - ./front/conf.d:/etc/nginx/conf.d
+    networks: 
+        - common
+  back:
+     container_name: illimination_back
+     build: 
+       context: back/
+       args:
+         server_name: illimination_back
+     environment:
+       - TZ=America/Mexico_City
+     ports:
+       - 8007:80
+     working_dir: /var/www/localhost/htdocs/
+     volumes:
+       - ./back:/var/www/localhost/htdocs/
+     networks: 
+       - common
